@@ -53,51 +53,51 @@ Sub Object 1: Steering Wheel
     Name 4 things you'll find on the:    Steering Wheel
         1) paddle shifters
         2) 'cruise control' controls
-        3) 
-        4) 
+        3) horn
+        4) sound system controls
     Name 2 things you can do with the:   Steering Wheel
         1) adjust cruise control settings.
-        2)
+        2) adjust sound system settings
         
 Sub Object 2: Instrument Cluster
     Name 4 things you'll find on the:   Instrument Cluster
-        1)
-        2)
-        3)
-        4)
+        1) spedometer
+        2) tachometer
+        3) odometer
+        4) fuel gauge
     Name 3 things you can do with the:   Instrument Cluster
-        1)
-        2)
-        3)
+        1) get current speed
+        2) get current engine RPM
+        3) get current fuel level
     
 Sub Object 3: Environment Controls
     Name 3 things you'll find on the:    Environment Controls
-        1)
-        2)
-        3)
+        1) Temperature knob
+        2) Fan strength knob
+        3) A/C power button
     Name 3 things you can do with the:   Environment Controls
-        1)
-        2)
-        3)
+        1) Adjust temperature
+        2) Adjust fan strength
+        3) Toggle air conditioning
 
 Sub Object 4: Infotainment System
     Name 3 things you'll find on the:    Infotainment System
-        1)
-        2)
-        3)
+        1) GPS system
+        2) Volume control knob
+        3) 'Seek' buttons
     Name 3 things you can do with the:   Infotainment System
-        1)
-        2)
-        3)
+        1) start navigation
+        2) adjust volume 
+        3) change radio station
 
 Sub Object 5: Seat 
     Name 3 things you'll find on the:    Seat
-        1)
-        2)
-        3)
+        1) seat warmers
+        2) seat back angle adjustment lever
+        3) seat position adjustment lever
     Name 2 things you can do with the:   Seat
-        1)
-        2)
+        1) adjust back angle
+        2) adjust seat position
 */
 
 /*
@@ -154,61 +154,7 @@ Part 1b Assignment: 1 Step
         'int float double bool char std::string'.
 */
 
-/*
-Thing 1)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
 
-/*
-Thing 2)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 3)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 4)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
 
  /*
 Part 1c - Lesson
@@ -279,19 +225,7 @@ Define an object that is made of 5 sub-objects.
     you'll define these 5 sub-objects in Part 1d.
 */
 
-/*
-Thing 10)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
+
 
 /*
 Part 1d - Lesson
@@ -384,75 +318,7 @@ each property for UDTs 5 - 9.
 Step 3 is written below UDTs 5 - 9
 */
 
-/*
-Thing 5)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
 
-/*
-Thing 6)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 7)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 8)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 9)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
 
 /*
 ===================
@@ -472,6 +338,145 @@ After you have MOVED your 10 UDTs, send me a DM with your pull request link.
 I will review the pseudo-code that you have written.
 */
 
+/*
+Thing 1) Coffee shop
+5 properties:
+    1) Number of employees (int)
+    2) Number of coffee maker machines (int)
+    3) Open/closed state (bool)
+    4) Name (std::string)
+    5) Date established (int)
+3 things it can do:
+    1) Sell coffee
+    2) Purchase coffee beans
+    3) Toggle open/closed state
+ */
+
+/*
+Thing 2) Dog
+5 properties:
+    1) name (std::string)
+    2) age in months (int)
+    3) breed (std::string)
+    4) weight (float)
+    5) running speed (float)
+3 things it can do:
+    1) run
+    2) eat food
+    3) drink water
+ */
+
+/*
+Thing 3) Table
+5 properties:
+    1) number of legs (int)
+    2) height (float)
+    3) tabletop radius (float)
+    4) color (std::string)
+    5) weight (float)
+3 things it can do:
+    1) hold items
+    2) collapse
+    3) fold closed
+ */
+
+/*
+Thing 4)  Bank
+5 properties:
+    1) number of safe deposit boxes (int)
+    2) number of tellers (int)
+    3) total assets in USD (double)
+    4) address (std::string)
+    5) FDIC member ID (int)
+3 things it can do:
+    1) take deposit money
+    2) give withdrawal money
+    3) open new accounts
+ */
+
+/*
+Thing 5) Knife
+5 properties:
+    1) length (float)
+    2) sharpness (float)
+    3) mass (foat)
+    4) material (std::string)
+    5) reflectivity (float)
+3 things it can do:
+    1) cut
+    2) scratch
+    3) whittle
+ */
+
+/*
+Thing 6) Nail clippers
+5 properties:
+    1) length (float)
+    2) material (std::string)
+    3) clipper mouth width (float)
+    4) clipper mouth curve radius (float)
+    5) clipper strength (float)
+3 things it can do:
+    1) clip nail
+    2) unfold
+    3) fold
+ */
+
+/*
+Thing 7) Magnifying glass
+5 properties:
+    1) lens major radius (float)
+    2) lens light refraction angle (float)
+    3) lens magnification factor (float)
+    4) arm material (std::string)
+    5) glass type (std::string)
+3 things it can do:
+    1) magnify image
+    2) focus light
+    3) flip image
+ */
+
+/*
+Thing 8) Hair comb
+5 properties:
+    1) length (float)
+    2) material (std::string)
+    3) number of teeth (int)
+    4) teeth pitch (float)
+    5) teeth length (float)
+3 things it can do:
+    1) comb hair
+    2) unfold
+    3) fold
+ */
+
+/*
+Thing 9) Toothpick
+5 properties:
+    1) length (float)
+    2) material (std::string)
+    3) breaking strength (float)
+    4) tip angle (float)
+    5) number of times used (int)
+3 things it can do:
+    1) pick teeth
+    2) poke hole
+    3) snap
+ */
+
+/*
+Thing 10) Swiss Army Knife
+5 properties:
+    1) Knife
+    2) Nail Clippers
+    3) Magnifying Glass
+    4) Hair comb
+    5) Tooth pick
+3 things it can do:
+    1) Cut
+    2) Clip nails
+    3) Pick teeth
+ */
 
 
 
