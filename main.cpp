@@ -201,6 +201,41 @@ Thing 1) Coffee shop
     3) Toggle open/closed state
  */
 
+struct CoffeeShop
+{
+    // number of employees
+    int numEmployees = 10;
+    // number of coffee maker machines
+    int numCoffeeMachines = 2;
+    // open/closed state boolean
+    bool isOpen = true;
+    // name
+    std::string name = "The Nautical Bean";
+    // date established
+    int dateEstablished = 1995;
+
+    struct Employee
+    {
+        std::string firstName = "Jane";
+        std::string surname = "Doe";
+        int age = 20;
+        std::string role = "Cashier";
+        int id = 0;
+
+        void setRole(std::string newRole = "Generalist");
+        void setSurname(std::string newSurname);
+        bool isOlderThan(int ageToCompare = 0);   // returns true if employee age exceeds ageToCompare
+    };
+
+    Employee employeeOnDuty;
+
+    Employee getEmployeeOnDuty();  // returns the employeeOnDuty
+    void changeName(std::string newName);
+    void setEmployeeOnDuty(Employee employee);
+    void open();
+    void close();
+};
+
 /*
 Thing 2) Dog
 5 properties:
@@ -214,6 +249,24 @@ Thing 2) Dog
     2) eat food
     3) drink water
  */
+
+struct Dog
+{
+    // name
+    std::string name = "Watson";
+    // age in months
+    int ageInMonths = 26;
+    // breed
+    std::string breed = "Hound Mix";
+    // weight
+    float weightInPounds = 68.4f;
+    // running speed
+    float runningSpeed = 24.5f;
+
+    void run();
+    void eatFood();
+    void drinkWater();
+};
 
 /*
 Thing 3) Table
@@ -229,6 +282,24 @@ Thing 3) Table
     3) fold closed
  */
 
+struct Table
+{
+    // number of legs
+    int numLegs = 4;
+    // height
+    float height = 39.f;
+    // tabletop radius
+    float tabletopRadius = 14.f;
+    // color
+    std::string color = "White";
+    // weight
+    float weight = 68.5f;
+
+    void supportItem(int itemWeight = 0);
+    void collapse();
+    void foldClosed();
+};
+
 /*
 Thing 4)  Bank
 5 properties:
@@ -242,6 +313,41 @@ Thing 4)  Bank
     2) give withdrawal money
     3) open new accounts
  */
+
+struct Bank
+{
+    // number of safe deposit boxes
+    int numSafeDepositBoxes = 100;
+    // number of tellers
+    int numTellers = 3;
+    // total assets in USD
+    double totalAssets = 71893782.34;
+    // address
+    std::string address = "1 Some Place";
+    // FDIC member ID 
+    int id = 0;
+
+    struct ATM
+    {
+        int billCapacity = 2000;
+        int billCount = 0;
+        int paperCheckCapacity = 200;
+        int paperCheckCount = 0;
+        int serialNumber = 0;
+        std::string identifier = "UNNAMED";
+
+        void dispenseBills(int numTens = 0, int numTwenties = 0, int numHundreds = 0);
+        int getBillCount(); // returns billCount
+        int getTensCount(); // returns number of tens in the ATM
+        int getTwentiesCount(); // returns number of twenties in the ATM
+        double getTotalDollarsInMachine(); // returns total value of bills in the ATM
+    };
+
+    ATM atm;
+
+    void refillAtm(ATM atmToRefill);
+    ATM getAtm(); // returns the bank's ATM instance
+};
 
 /*
 Thing 5) Knife
@@ -257,6 +363,26 @@ Thing 5) Knife
     3) whittle
  */
 
+struct Knife
+{
+    // length
+    float length = 3.0f;
+    // sharpness
+    float sharpness = 0.8f;
+    // mass
+    float mass = 0.50f;
+    // material
+    std::string material = "Stainless Steel";
+    // reflectivity
+    float reflectivity = 0.8f;
+
+    void cut();
+    void scratch();
+    void whittle();
+    std::string getMaterial();
+    void setMaterial(std::string newMaterial);
+};
+
 /*
 Thing 6) Nail clippers
 5 properties:
@@ -270,6 +396,22 @@ Thing 6) Nail clippers
     2) unfold
     3) fold
  */
+
+struct NailClippers
+{
+    // length
+    float length = 3.0f;
+    // material
+    std::string material = "Stainless Steel";
+    // mouth width
+    float mouthWidth = 0.12f;
+    // mouth curve radius
+    float mouthCurveRadius = 0.65f;
+    // clip strength
+    float clipStrength = 24.5f;
+
+    bool canClip(float requiredClipStrength = 20.f); // returns whether these clippers' clip strength meets or exceeds the required clip strength
+};
 
 /*
 Thing 7) Magnifying glass
@@ -285,6 +427,24 @@ Thing 7) Magnifying glass
     3) flip image
  */
 
+struct MagnifyingGlass
+{
+    // lens major radius
+    float lensRadius = 1.f;
+    // lens light refraction angle
+    float refractionAngle = 30.f;
+    // lens magnification factor
+    float magFactor = 2.5f;
+    // arm material
+    std::string armMaterial = "Stainless Steel";
+    // glass type
+    std::string glassType = "Clear";
+
+    void magnifyImage(float magnificationFactor = 2.f);
+    void focusLight();
+    void flipImage();
+};
+
 /*
 Thing 8) Hair comb
 5 properties:
@@ -298,6 +458,24 @@ Thing 8) Hair comb
     2) unfold
     3) fold
  */
+
+struct HairComb
+{
+    // length
+    float length = 5.5f;
+    // material
+    std::string material = "Aluminum";
+    // number of teeth
+    int numTeeth = 30;
+    // teeth pitch
+    float teethPitch = .0125f;
+    // teeth length
+    float teethLength = 1.125f;
+
+    void combHair(int numStrokes = 1);
+    void breakTeeth(int numTeethToBreak = 1);
+    double getTotalTeethLength(float numTeeth, float pitch);
+};
 
 /*
 Thing 9) Toothpick
@@ -313,6 +491,23 @@ Thing 9) Toothpick
     3) snap
  */
 
+struct Toothpick
+{
+    // length
+    float length = 2.5f;
+    // material
+    std::string material = "Stainless Steel";
+    // breaking strength
+    float breakingStrength = 34.5f;
+    // tip angle
+    float tipAngle = 5.5f;
+    // number of times used
+    int numTimesUsed = 0;
+
+    void pickTeeth(int numTimesToPick = 1);
+    int getNumTimesUsed(); // returns number of times this toothpick's been used
+};
+
 /*
 Thing 10) Swiss Army Knife
 5 properties:
@@ -327,7 +522,14 @@ Thing 10) Swiss Army Knife
     3) Pick teeth
  */
 
-
+struct SwissArmyKnife
+{
+    Knife knife;
+    NailClippers nailClippers; 
+    MagnifyingGlass magnifyingGlass;
+    HairComb hairComb;
+    Toothpick toothpick;
+};
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
