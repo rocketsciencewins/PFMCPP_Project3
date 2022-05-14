@@ -234,6 +234,9 @@ struct CoffeeShop
     void setEmployeeOnDuty(Employee employee);
     void open();
     void close();
+    void toggleOpenClosedState();
+    double sellCoffee(int numCups); // returns revenue from sale in USD
+    double purchaseCoffeeBeans(double weightInPounds); // returns purchase cost in USD
 };
 
 /*
@@ -277,7 +280,7 @@ Thing 3) Table
     4) color (std::string)
     5) weight (float)
 3 things it can do:
-    1) hold items
+    1) hold item
     2) collapse
     3) fold closed
  */
@@ -295,7 +298,7 @@ struct Table
     // weight
     float weight = 68.5f;
 
-    void supportItem(int itemWeight = 0);
+    void holdItem(int itemWeight = 0);
     void collapse();
     void foldClosed();
 };
@@ -311,7 +314,7 @@ Thing 4)  Bank
 3 things it can do:
     1) take deposit money
     2) give withdrawal money
-    3) open new accounts
+    3) add more safety deposit boxes
  */
 
 struct Bank
@@ -347,6 +350,9 @@ struct Bank
 
     void refillAtm(ATM atmToRefill);
     ATM getAtm(); // returns the bank's ATM instance
+    void deposit(int accountNumber, double amount);
+    void withdraw(int accountNumber, double amount);
+    void addSafetyDepositBox(int numBoxesToAdd = 1);
 };
 
 /*
@@ -410,7 +416,10 @@ struct NailClippers
     // clip strength
     float clipStrength = 24.5f;
 
+    void clip(float requiredClipStrength = 20.f);
     bool canClip(float requiredClipStrength = 20.f); // returns whether these clippers' clip strength meets or exceeds the required clip strength
+    void unfold();
+    void fold();
 };
 
 /*
@@ -473,7 +482,8 @@ struct HairComb
     float teethLength = 1.125f;
 
     void combHair(int numStrokes = 1);
-    void breakTeeth(int numTeethToBreak = 1);
+    void unfold();
+    void fold();
     double getTotalTeethLength(float numTeeth, float pitch);
 };
 
@@ -505,6 +515,8 @@ struct Toothpick
     int numTimesUsed = 0;
 
     void pickTeeth(int numTimesToPick = 1);
+    void pokeHole();
+    void snap();
     int getNumTimesUsed(); // returns number of times this toothpick's been used
 };
 
@@ -529,6 +541,11 @@ struct SwissArmyKnife
     MagnifyingGlass magnifyingGlass;
     HairComb hairComb;
     Toothpick toothpick;
+
+    void cut();
+    void clipNails(float requiredClipStrength = 20.f);
+    void pickTeeth(int numTimesToPick = 1);
+    Knife getKnife();
 };
 
 /*
