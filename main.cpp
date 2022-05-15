@@ -108,6 +108,42 @@ struct CarWash
     You'll need to insert the Person struct from the video in the space below.
  */
 
+struct Foot
+{
+    int strideLength;
+    
+    int stepSize() { return strideLength; }
+    void stepForward() { /* step */ }
+};
+
+struct Person
+{
+    int age;
+    int height;
+    float hairLength;
+    float GPA;
+    unsigned int SATScore;
+    int distanceTraveled;
+    Foot leftFoot;
+    Foot rightFoot;
+
+    void run(int howFast, bool startWithLeftFoot);
+};
+
+void Person::run(int howFast, bool startWithLeftFoot)
+{
+    if (startWithLeftFoot)
+    {
+        leftFoot.stepForward();
+        rightFoot.stepForward();
+    }
+    else
+    {
+        rightFoot.stepForward();
+        leftFoot.stepForward();
+    }
+    distanceTraveled += leftFoot.stepSize() + rightFoot.stepSize();
+}
 
 
 
@@ -129,32 +165,15 @@ struct CarWash
 
 
 
-/*
-Thing 1) Coffee shop
-5 properties:
-    1) Number of employees (int)
-    2) Number of coffee maker machines (int)
-    3) Open/closed state (bool)
-    4) Name (std::string)
-    5) Date established (int)
-3 things it can do:
-    1) Sell coffee
-    2) Purchase coffee beans
-    3) Toggle open/closed state
- */
 
 struct CoffeeShop
 {
-    // number of employees
     int numEmployees = 10;
-    // number of coffee maker machines
     int numCoffeeMachines = 2;
-    // open/closed state boolean
     bool isOpen = true;
-    // name
     std::string name = "The Nautical Bean";
-    // date established
     int dateEstablished = 1995;
+    double pricePerCup = 3;
 
     struct Employee
     {
@@ -166,46 +185,58 @@ struct CoffeeShop
 
         void setRole(std::string newRole = "Generalist");
         void setSurname(std::string newSurname);
-        bool isOlderThan(int ageToCompare = 0);   // returns true if employee age exceeds ageToCompare
+        bool isOlderThan(int ageToCompare = 0);
     };
 
     Employee employeeOnDuty;
 
-    Employee getEmployeeOnDuty();  // returns the employeeOnDuty
-    void changeName(std::string newName);
-    void setEmployeeOnDuty(Employee employee);
     void open();
     void close();
     void toggleOpenClosedState();
-    double sellCoffee(int numCups); // returns revenue from sale in USD
-    double purchaseCoffeeBeans(double weightInPounds); // returns purchase cost in USD
+    double sellCoffee(int numCups);
+    double purchaseCoffeeBeans(double weightInPounds, double pricePerPound);
 };
 
-/*
-Thing 2) Dog
-5 properties:
-    1) name (std::string)
-    2) age in months (int)
-    3) breed (std::string)
-    4) weight (float)
-    5) running speed (float)
-3 things it can do:
-    1) run
-    2) eat food
-    3) drink water
- */
+void CoffeeShop::open() { isOpen = true; }
+void CoffeeShop::close() { isOpen = false; }
+void CoffeeShop::toggleOpenClosedState()
+{
+    isOpen = isOpen ? false : true;
+}
+
+double CoffeeShop::sellCoffee(int numCups)
+{
+    double revenue = numCups * pricePerCup;
+    return revenue;
+}
+
+double CoffeeShop::purchaseCoffeeBeans(double weightInPounds, double pricePerPound)
+{
+    double cost = weightInPounds * pricePerPound;
+    return cost;
+}
+
+void CoffeeShop::Employee::setRole(std::string newRole)
+{
+    role = newRole;
+}
+
+void CoffeeShop::Employee::setSurname(std::string newSurname)
+{
+    surname = newSurname;
+}
+
+bool CoffeeShop::Employee::isOlderThan(int ageToCompare)
+{
+    return (age > ageToCompare) ? true : false;
+}
 
 struct Dog
 {
-    // name
     std::string name = "Watson";
-    // age in months
     int ageInMonths = 26;
-    // breed
     std::string breed = "Hound Mix";
-    // weight
     float weightInPounds = 68.4f;
-    // running speed
     float runningSpeed = 24.5f;
 
     void run();
@@ -213,63 +244,49 @@ struct Dog
     void drinkWater();
 };
 
-/*
-Thing 3) Table
-5 properties:
-    1) number of legs (int)
-    2) height (float)
-    3) tabletop radius (float)
-    4) color (std::string)
-    5) weight (float)
-3 things it can do:
-    1) hold item
-    2) collapse
-    3) fold closed
- */
+void Dog::run() { /* run impl */ }
+void Dog::eatFood() { /* eat food impl */ }
+void Dog::drinkWater() { /* drink water impl */ }
 
 struct Table
 {
-    // number of legs
     int numLegs = 4;
-    // height
     float height = 39.f;
-    // tabletop radius
     float tabletopRadius = 14.f;
-    // color
     std::string color = "White";
-    // weight
     float weight = 68.5f;
+    float heldWeight = 0.f;
+    float maxHoldWeight = 100.f;
 
     void holdItem(int itemWeight = 0);
     void collapse();
     void foldClosed();
 };
 
-/*
-Thing 4)  Bank
-5 properties:
-    1) number of safe deposit boxes (int)
-    2) number of tellers (int)
-    3) total assets in USD (double)
-    4) address (std::string)
-    5) FDIC member ID (int)
-3 things it can do:
-    1) take deposit money
-    2) give withdrawal money
-    3) add more safety deposit boxes
- */
+void Table::holdItem(int itemWeight)
+{
+    heldWeight += itemWeight;
+
+    if (heldWeight > maxHoldWeight) 
+        collapse();
+}
+
+void Table::collapse()
+{
+    // collapse impl
+}
+
+void Table::foldClosed()
+{
+    // fold closed impl
+}
 
 struct Bank
 {
-    // number of safe deposit boxes
     int numSafeDepositBoxes = 100;
-    // number of tellers
     int numTellers = 3;
-    // total assets in USD
     double totalAssets = 71893782.34;
-    // address
     std::string address = "1 Some Place";
-    // FDIC member ID 
     int id = 0;
 
     struct ATM
@@ -282,113 +299,108 @@ struct Bank
         std::string identifier = "UNNAMED";
 
         void dispenseBills(int numTens = 0, int numTwenties = 0, int numHundreds = 0);
-        int getBillCount(); // returns billCount
-        int getTensCount(); // returns number of tens in the ATM
-        int getTwentiesCount(); // returns number of twenties in the ATM
-        double getTotalDollarsInMachine(); // returns total value of bills in the ATM
+        void refill();
+        double getFillPercentage();
     };
 
     ATM atm;
 
     void refillAtm(ATM atmToRefill);
-    ATM getAtm(); // returns the bank's ATM instance
     void deposit(int accountNumber, double amount);
     void withdraw(int accountNumber, double amount);
-    void addSafetyDepositBox(int numBoxesToAdd = 1);
+    void addSafeDepositBox(int numBoxesToAdd = 1);
 };
 
-/*
-Thing 5) Knife
-5 properties:
-    1) length (float)
-    2) sharpness (float)
-    3) mass (foat)
-    4) material (std::string)
-    5) reflectivity (float)
-3 things it can do:
-    1) cut
-    2) scratch
-    3) whittle
- */
+void Bank::refillAtm(ATM atmToRefill)
+{
+    atmToRefill.refill();
+}
+
+void Bank::deposit(int accountNumber, double amount)
+{
+    // apply 'amount' to 'accountNumber' balance
+}
+
+void Bank::withdraw(int accountNumber, double amount)
+{
+    // subtract 'amount' from 'accountNumber' balance
+}
+
+void Bank::addSafeDepositBox(int numBoxesToAdd)
+{
+    numSafeDepositBoxes += numBoxesToAdd;
+}
+
+void Bank::ATM::dispenseBills(int numTens, int numTwenties, int numHundreds)
+{
+    // dispense tens
+    // dispense twenties
+    // dispense hundreds
+}
+
+void Bank::ATM::refill()
+{
+    billCount = billCapacity;
+}
+
+double Bank::ATM::getFillPercentage()
+{
+    return ( (double)billCount / (double)billCapacity );
+}
 
 struct Knife
 {
-    // length
     float length = 3.0f;
-    // sharpness
     float sharpness = 0.8f;
-    // mass
     float mass = 0.50f;
-    // material
     std::string material = "Stainless Steel";
-    // reflectivity
     float reflectivity = 0.8f;
 
     void cut();
     void scratch();
     void whittle();
-    std::string getMaterial();
-    void setMaterial(std::string newMaterial);
 };
 
-/*
-Thing 6) Nail clippers
-5 properties:
-    1) length (float)
-    2) material (std::string)
-    3) clipper mouth width (float)
-    4) clipper mouth curve radius (float)
-    5) clipper strength (float)
-3 things it can do:
-    1) clip nail
-    2) unfold
-    3) fold
- */
+void Knife::cut() { /* cut! */ }
+void Knife::scratch() { /* scratch! */ }
+void Knife::whittle() { /* whittle! */ }
 
 struct NailClippers
 {
-    // length
     float length = 3.0f;
-    // material
     std::string material = "Stainless Steel";
-    // mouth width
     float mouthWidth = 0.12f;
-    // mouth curve radius
     float mouthCurveRadius = 0.65f;
-    // clip strength
     float clipStrength = 24.5f;
 
     void clip(float requiredClipStrength = 20.f);
-    bool canClip(float requiredClipStrength = 20.f); // returns whether these clippers' clip strength meets or exceeds the required clip strength
+    bool canClip(float requiredClipStrength = 20.f);
     void unfold();
     void fold();
 };
 
-/*
-Thing 7) Magnifying glass
-5 properties:
-    1) lens major radius (float)
-    2) lens light refraction angle (float)
-    3) lens magnification factor (float)
-    4) arm material (std::string)
-    5) glass type (std::string)
-3 things it can do:
-    1) magnify image
-    2) focus light
-    3) flip image
- */
+void NailClippers::clip(float requiredClipStrength)
+{
+    if ( canClip(requiredClipStrength) )
+    {
+        // clip the nail!
+    }
+}
+
+bool NailClippers::canClip(float requiredClipStrength)
+{
+    return ( requiredClipStrength < clipStrength ) ? true : false;
+}
+
+void NailClippers::unfold() { /* unfold impl */ }
+void NailClippers::fold() { /* fold impl */ }
 
 struct MagnifyingGlass
 {
-    // lens major radius
     float lensRadius = 1.f;
-    // lens light refraction angle
     float refractionAngle = 30.f;
-    // lens magnification factor
     float magFactor = 2.5f;
-    // arm material
     std::string armMaterial = "Stainless Steel";
-    // glass type
     std::string glassType = "Clear";
 
     void magnifyImage(float magnificationFactor = 2.f);
@@ -396,85 +408,78 @@ struct MagnifyingGlass
     void flipImage();
 };
 
-/*
-Thing 8) Hair comb
-5 properties:
-    1) length (float)
-    2) material (std::string)
-    3) number of teeth (int)
-    4) teeth pitch (float)
-    5) teeth length (float)
-3 things it can do:
-    1) comb hair
-    2) unfold
-    3) fold
- */
+void MagnifyingGlass::magnifyImage(float magnificationFactor)
+{
+    // magnify impl
+}
+
+void MagnifyingGlass::focusLight()
+{
+    // focus light impl
+}
+
+void MagnifyingGlass::flipImage()
+{
+    // flippy stuff
+}
 
 struct HairComb
 {
-    // length
     float length = 5.5f;
-    // material
     std::string material = "Aluminum";
-    // number of teeth
     int numTeeth = 30;
-    // teeth pitch
-    float teethPitch = .0125f;
-    // teeth length
     float teethLength = 1.125f;
 
     void combHair(int numStrokes = 1);
     void unfold();
     void fold();
-    double getTotalTeethLength(float numTeeth, float pitch);
+    double getTeethPitch(float numTeethInComb, float length);
 };
 
-/*
-Thing 9) Toothpick
-5 properties:
-    1) length (float)
-    2) material (std::string)
-    3) breaking strength (float)
-    4) tip angle (float)
-    5) number of times used (int)
-3 things it can do:
-    1) pick teeth
-    2) poke hole
-    3) snap
- */
+void HairComb::combHair(int numStrokes)
+{
+    // comb hair 'numStrokes' times!
+}
+
+void HairComb::unfold() { /* unfold impl */ }
+void HairComb::fold() { /* fold impl */ }
+
+double HairComb::getTeethPitch(float numTeethInComb, float lengthOfComb)
+{
+    return (double)lengthOfComb / (double)numTeethInComb;
+}
 
 struct Toothpick
 {
-    // length
     float length = 2.5f;
-    // material
     std::string material = "Stainless Steel";
-    // breaking strength
     float breakingStrength = 34.5f;
-    // tip angle
     float tipAngle = 5.5f;
-    // number of times used
     int numTimesUsed = 0;
 
     void pickTeeth(int numTimesToPick = 1);
     void pokeHole();
     void snap();
-    int getNumTimesUsed(); // returns number of times this toothpick's been used
 };
 
-/*
-Thing 10) Swiss Army Knife
-5 properties:
-    1) Knife
-    2) Nail Clippers
-    3) Magnifying Glass
-    4) Hair comb
-    5) Tooth pick
-3 things it can do:
-    1) Cut
-    2) Clip nails
-    3) Pick teeth
- */
+void Toothpick::pickTeeth(int numTimesToPick)
+{
+    //pick teeth!
+    numTimesUsed++;
+}
+
+void Toothpick::pokeHole()
+{
+    //poke a hole!
+    numTimesUsed++;
+}
+
+void Toothpick::snap()
+{
+    // snap impl
+    // render toothpick useless
+    // delete from inventory or whatever
+}
 
 struct SwissArmyKnife
 {
@@ -487,8 +492,22 @@ struct SwissArmyKnife
     void cut();
     void clipNails(float requiredClipStrength = 20.f);
     void pickTeeth(int numTimesToPick = 1);
-    Knife getKnife();
 };
+
+void SwissArmyKnife::cut()
+{
+    knife.cut();
+}
+
+void SwissArmyKnife::clipNails(float requiredClipStrength)
+{
+    nailClippers.clip(requiredClipStrength);
+}
+
+void SwissArmyKnife::pickTeeth(int numTimesToPick)
+{
+    toothpick.pickTeeth(numTimesToPick);
+}
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
