@@ -127,10 +127,10 @@ struct Person
     Foot leftFoot;
     Foot rightFoot;
 
-    void run(int howFast, bool startWithLeftFoot);
+    void run(bool startWithLeftFoot);
 };
 
-void Person::run(int howFast, bool startWithLeftFoot)
+void Person::run(bool startWithLeftFoot)
 {
     if (startWithLeftFoot)
     {
@@ -298,7 +298,7 @@ struct Bank
         int serialNumber = 0;
         std::string identifier = "UNNAMED";
 
-        void dispenseBills(int numTens = 0, int numTwenties = 0, int numHundreds = 0);
+        void dispenseBills(int numBills = 0);
         void refill();
         float getFillPercentage();
     };
@@ -306,8 +306,8 @@ struct Bank
     ATM atm;
 
     void refillAtm(ATM atmToRefill);
-    void deposit(int accountNumber, double amount);
-    void withdraw(int accountNumber, double amount);
+    void deposit(double amount);
+    void withdraw(double amount);
     void addSafeDepositBox(int numBoxesToAdd = 1);
 };
 
@@ -316,14 +316,14 @@ void Bank::refillAtm(ATM atmToRefill)
     atmToRefill.refill();
 }
 
-void Bank::deposit(int accountNumber, double amount)
+void Bank::deposit(double amount)
 {
-    // apply 'amount' to 'accountNumber' balance
+    totalAssets += amount;
 }
 
-void Bank::withdraw(int accountNumber, double amount)
+void Bank::withdraw(double amount)
 {
-    // subtract 'amount' from 'accountNumber' balance
+    totalAssets -= amount;
 }
 
 void Bank::addSafeDepositBox(int numBoxesToAdd)
@@ -331,11 +331,9 @@ void Bank::addSafeDepositBox(int numBoxesToAdd)
     numSafeDepositBoxes += numBoxesToAdd;
 }
 
-void Bank::ATM::dispenseBills(int numTens, int numTwenties, int numHundreds)
+void Bank::ATM::dispenseBills(int numBills)
 {
-    // dispense tens
-    // dispense twenties
-    // dispense hundreds
+    billCount -= numBills;
 }
 
 void Bank::ATM::refill()
@@ -403,12 +401,12 @@ struct MagnifyingGlass
     std::string armMaterial = "Stainless Steel";
     std::string glassType = "Clear";
 
-    void magnifyImage(float magnificationFactor = 2.f);
+    void magnifyImage();
     void focusLight();
     void flipImage();
 };
 
-void MagnifyingGlass::magnifyImage(float magnificationFactor)
+void MagnifyingGlass::magnifyImage()
 {
     // magnify impl
 }
@@ -429,6 +427,7 @@ struct HairComb
     std::string material = "Aluminum";
     int numTeeth = 30;
     float teethLength = 1.125f;
+    int totalNumStrokes = 0;
 
     void combHair(int numStrokes = 1);
     void unfold();
@@ -438,7 +437,7 @@ struct HairComb
 
 void HairComb::combHair(int numStrokes)
 {
-    // comb hair 'numStrokes' times!
+    totalNumStrokes += numStrokes;
 }
 
 void HairComb::unfold() { /* unfold impl */ }
@@ -465,7 +464,7 @@ struct Toothpick
 void Toothpick::pickTeeth(int numTimesToPick)
 {
     //pick teeth!
-    numTimesUsed++;
+    numTimesUsed += numTimesToPick;
 }
 
 void Toothpick::pokeHole()
