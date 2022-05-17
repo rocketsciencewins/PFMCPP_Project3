@@ -300,7 +300,7 @@ struct Bank
 
         void dispenseBills(int numTens = 0, int numTwenties = 0, int numHundreds = 0);
         void refill();
-        double getFillPercentage();
+        float getFillPercentage();
     };
 
     ATM atm;
@@ -343,9 +343,9 @@ void Bank::ATM::refill()
     billCount = billCapacity;
 }
 
-double Bank::ATM::getFillPercentage()
+float Bank::ATM::getFillPercentage()
 {
-    return ( (double)billCount / (double)billCapacity );
+    return ( billCount / billCapacity );
 }
 
 struct Knife
@@ -433,7 +433,7 @@ struct HairComb
     void combHair(int numStrokes = 1);
     void unfold();
     void fold();
-    double getTeethPitch(float numTeethInComb, float length);
+    double getTeethPitch(double numTeethInComb, double length);
 };
 
 void HairComb::combHair(int numStrokes)
@@ -444,9 +444,9 @@ void HairComb::combHair(int numStrokes)
 void HairComb::unfold() { /* unfold impl */ }
 void HairComb::fold() { /* fold impl */ }
 
-double HairComb::getTeethPitch(float numTeethInComb, float lengthOfComb)
+double HairComb::getTeethPitch(double numTeethInComb, double lengthOfComb)
 {
-    return (double)lengthOfComb / (double)numTeethInComb;
+    return ( lengthOfComb / numTeethInComb );
 }
 
 struct Toothpick
